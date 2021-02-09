@@ -46,6 +46,7 @@ namespace Api.Controllers
         [HttpGet]
         [Route("")]
         [Authorize(Roles = "manager")]
+        [ResponseCache(VaryByHeader = "User-Agent",Location = ResponseCacheLocation.Any, Duration = 30 )]
         public async Task<ActionResult<List<User>>> Get([FromServices] DataContext context)
         {
             try
@@ -64,6 +65,7 @@ namespace Api.Controllers
         [HttpGet]
         [Route("{id:int}")]
         [Authorize(Roles = "manager, employee")]
+        [ResponseCache(VaryByHeader = "User-Agent",Location = ResponseCacheLocation.Any, Duration = 30 )]
         public async Task<ActionResult<User>> GetById([FromServices] DataContext context, int id)
         {
             try
@@ -151,24 +153,5 @@ namespace Api.Controllers
 
         }
         
-        [HttpGet]
-        [Route("Anonymous")]
-        [AllowAnonymous]
-        public string Anonymous() => "Anônimo";
-
-        [HttpGet]
-        [Route("authenticated")]
-        [Authorize]
-        public string Authenticated() => String.Format("Autenticado - {0}", User.Identity.Name);
-
-        [HttpGet]
-        [Route("employee")]
-        [Authorize(Roles = "employee, manager")]
-        public string Employee() => "Funcionario";
-
-        [HttpGet]
-        [Route("manager")]
-        [Authorize(Roles = "manager")]
-        public string Manager() => "Gerente";
     }
 }

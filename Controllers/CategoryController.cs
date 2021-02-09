@@ -17,6 +17,7 @@ namespace Api.Controllers
         [HttpGet]
         [Route("")]
         [AllowAnonymous]
+        [ResponseCache(VaryByHeader = "User-Agent",Location = ResponseCacheLocation.Any, Duration = 30 )]
         public async Task<ActionResult<List<Category>>> Get([FromServices] DataContext context)
         {
             try
@@ -33,6 +34,7 @@ namespace Api.Controllers
         [HttpGet]
         [Route("{id:int}")]
         [AllowAnonymous]
+        [ResponseCache(VaryByHeader = "User-Agent",Location = ResponseCacheLocation.Any, Duration = 30 )]
         public async Task<ActionResult<Category>> Get([FromServices] DataContext context, int id)
         {
             try
@@ -52,6 +54,7 @@ namespace Api.Controllers
         [HttpPost]
         [Route("")]
         [Authorize(Roles = "manager, employee")]
+        [ResponseCache(VaryByHeader = "User-Agent",Location = ResponseCacheLocation.Any, Duration = 30 )]
         public async Task<ActionResult<Category>> Post([FromServices] DataContext context, [FromBody] Category model)
         {
             try
@@ -72,6 +75,7 @@ namespace Api.Controllers
         [HttpPut]
         [Route("{id:int}")]
         [Authorize(Roles = "manager, employee")]
+        [ResponseCache(VaryByHeader = "User-Agent",Location = ResponseCacheLocation.Any, Duration = 30 )]
         public async Task<ActionResult<Category>> Put([FromServices] DataContext context, [FromBody] Category category, int id)
         {
             try
@@ -94,6 +98,7 @@ namespace Api.Controllers
         [HttpDelete]
         [Route("{id:int}")]
         [Authorize(Roles = "manager")]
+        [ResponseCache(VaryByHeader = "User-Agent",Location = ResponseCacheLocation.Any, Duration = 30 )]
         public async Task<ActionResult<Category>> Delete([FromServices] DataContext context, int id)
         {
             try

@@ -13,6 +13,7 @@ namespace Api.Controllers
         [HttpGet]
         [Route("")]
         [AllowAnonymous]
+        
         public async Task<ActionResult<dynamic>> Config([FromServices]DataContext context)
         {
             try

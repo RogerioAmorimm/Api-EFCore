@@ -17,6 +17,7 @@ namespace CrudEf.Controllers
         [HttpGet]
         [Route("")]
         [AllowAnonymous]
+        [ResponseCache(VaryByHeader = "User-Agent",Location = ResponseCacheLocation.Any, Duration = 30 )]
         public async Task<ActionResult<List<Product>>> Get([FromServices] DataContext context)
         {
             try
@@ -35,6 +36,7 @@ namespace CrudEf.Controllers
         [HttpGet]
         [Route("{id:int}")]
         [AllowAnonymous]
+        [ResponseCache(VaryByHeader = "User-Agent",Location = ResponseCacheLocation.Any, Duration = 30 )]
         public async Task<ActionResult<Product>> GetById([FromServices] DataContext context, int id)
         {
             try
@@ -55,6 +57,7 @@ namespace CrudEf.Controllers
         [HttpGet]
         [Route("categories/{id:int}")]
         [AllowAnonymous]
+        [ResponseCache(VaryByHeader = "User-Agent",Location = ResponseCacheLocation.Any, Duration = 30 )]
         public async Task<ActionResult<List<Product>>> GetByCategory([FromServices] DataContext context, int id)
         {
             try
@@ -76,6 +79,7 @@ namespace CrudEf.Controllers
         [HttpPost]
         [Route("")]
         [Authorize(Roles = "manager, employee")]
+        [ResponseCache(VaryByHeader = "User-Agent",Location = ResponseCacheLocation.Any, Duration = 30 )]
         public async Task<ActionResult<Product>> Post([FromServices] DataContext context, [FromBody] ProductDTO model)
         {
             try
@@ -112,6 +116,7 @@ namespace CrudEf.Controllers
         [HttpPut]
         [Route("{id:int}")]
         [Authorize(Roles = "manager, employee")]
+        [ResponseCache(VaryByHeader = "User-Agent",Location = ResponseCacheLocation.Any, Duration = 30 )]
         public async Task<ActionResult<Product>> Put([FromServices] DataContext context, [FromBody] ProductDTO model, int id)
         {
             try
@@ -138,6 +143,7 @@ namespace CrudEf.Controllers
         [HttpDelete]
         [Route("{id:int}")]
         [Authorize(Roles = "manager")]
+        [ResponseCache(VaryByHeader = "User-Agent",Location = ResponseCacheLocation.Any, Duration = 30 )]
         public async Task<ActionResult<Product>> Delete([FromServices] DataContext context, int id)
         {
             try
